@@ -4,7 +4,7 @@
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <h2 class="text-uppercase">
-                        <strong>Quantum Software Can help you bring your ideas into reality</strong>
+                        <strong>Quantum Software Can help you bring your ideas to reality</strong>
                         </h1>
                         <hr>
                 </div>

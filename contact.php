@@ -10,7 +10,7 @@
 
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="style/style.css">
-        <title>Hello, world!</title>
+        <title>Quantum Software International</title>
     </head>
     <body>
 
