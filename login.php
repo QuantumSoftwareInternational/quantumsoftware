@@ -1,7 +1,27 @@
 <?php
+    session_start();
+
+    //--------redirect if already logged in ------
+        if( isset($_SESSION['user_id'])){
+            header("Location: index.php");
+        }
+
+    require 'includes/auth_db.php';
+    $message = '';
+
     if (!empty($_POST['email']) && !empty($_POST['password'])):
-        echo $_POST['email'];
-        die();
+        $records = $conn->prepare('SELECT id,email,password FROM users WHERE email = :email');
+        $records->bindParam(':email', $_POST['email']);
+        $records->execute();
+        $results = $records->fetch(PDO::FETCH_ASSOC);
+
+        if(count ($results) >0 && password_verify($_POST['password'], $results['password'])){
+            $_SESSION['user_id'] = $results['id'];
+            header("Location: index.php"); //redirect
+        }else{
+            $message = 'Login Failed: The username or the password could not be verified!';
+        }
+
     endif;
 ?>
 
@@ -27,6 +47,11 @@
             <input type="password" placeholder = "and password" name = "password">
             <input type="submit" >
         </form>
+
+        <!-- confirm on the screen if successful or not--->
+        <?php if(!empty($message)): ?>
+            <p class="msg-error"><?= $message ?></p>
+        <?php endif; ?>
 
     </div>
 </body>

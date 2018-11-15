@@ -1,5 +1,13 @@
 <?php
+    session_start();
+
     require 'includes/auth_db.php';
+    //--------redirect if already logged in ------
+    if( isset($_SESSION['user_id'])){
+        header("Location: index.php");
+    }
+    //-------------------------------------------/
+    
     $message_good = '';
     $message_error = '';
     if (!empty($_POST['email']) && !empty($_POST['password'])):

@@ -1,4 +1,4 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -18,8 +18,8 @@
 
 <body>
 
-<?php include 'includes/navigation.php' ?>
-<?php include 'includes/header.php' ?>
+    <?php include 'includes/navigation.php' ?>
+    <?php include 'includes/header.php' ?>
 
     <section class="bg-primary" id="about">
         <div class="container-fluid">

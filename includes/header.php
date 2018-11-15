@@ -1,6 +1,25 @@
+    <?php
+        session_start();
+        require 'auth_db.php';
+        //--------redirect if already logged in retrieve content from auth db ------
+            if( isset($_SESSION['user_id'])){
+                $records = $conn->prepare('SELECT id,email,password FROM users WHERE id = :id');
+                $records->bindParam(':id', $_SESSION['user_id']);
+                $records->execute();
+                $results = $records->fetch(PDO::FETCH_ASSOC);
 
+                $user = NULL;
+                if(count($results) > 0) {
+                    $user = $results;
+                }
+            }
+    ?>
     <header class="masthead text-center text-white d-flex">
         <div class="container my-auto">
+            <?php if(!empty($user)): ?>
+                <p style ="color: #FF6347;">Welcome <?= $user['email'];?></p>
+            <?php endif; ?>
+
             <div class="row">
                 <div class="col-lg-10 mx-auto">
                     <h2 class="text-uppercase">

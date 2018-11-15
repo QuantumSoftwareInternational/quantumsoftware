@@ -358,14 +358,14 @@ form {
     border-bottom: 1px solid #eee;
 }
 
-.auth .msg-good{
+.msg-good{
     color: rgb(27, 219, 21);
     text-align: center;
     font-size: 100%;
     font-weight: 700;
 }
 
-.auth .msg-error{
+.msg-error{
     color: rgb(255, 5, 5);
     text-align: center;
     font-size: 100%;
