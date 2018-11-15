@@ -1,17 +1,20 @@
 <?php
-    $server = 'localhost';
-    $username = 'root';
-    $password = 'root';
-    $database = 'auth';
-
-    try{
-        $conn = new PDO("mysql:host=$server;dbname=$database;", $username, $password);
-    }catch(PDOException $e){
-        die ("Connection failed: ". $e->getMessage());
-    }
-
+    require 'includes/auth_db.php';
+    $message_good = '';
+    $message_error = '';
     if (!empty($_POST['email']) && !empty($_POST['password'])):
         //enter the new user in the db
+        $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindParam(':email', $_POST['email']);
+        $stmt->bindParam(':password', password_hash($_POST['password'], PASSWORD_BCRYPT));
+
+        if($stmt->execute()):
+            $message_good = 'Successfully created your account';
+        else:
+            $message_error = 'Sorry, there was a problem creating your account';
+        endif;
     endif;
 ?>
 
@@ -38,6 +41,13 @@
             <input type="password" placeholder = "confirm password" name = "confirm_password">
             <input type="submit" >
         </form>
+        <!-- confirm on the screen if successful or not--->
+        <?php if(!empty($message_good)): ?>
+            <p class="msg-good"><?= $message_good ?></p>
+        <?php endif; ?>
+        <?php if(!empty($message_error)): ?>
+            <p class="msg-error"><?= $message_error ?></p>
+        <?php endif; ?>
 
     </div>
 
