@@ -89,7 +89,7 @@
 
             <div class="row">
                 <div class="col-md-8 col-sm-12 form-group">
-                    <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Post It! </button>
+                    <button type="submit" class="btn btn-lg btn-success btn-block" id="btnContactUs">Send Message ! </button>
                 </div>
             </div>
 
