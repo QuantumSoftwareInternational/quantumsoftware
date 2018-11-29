@@ -7,11 +7,12 @@
         header("Location: index.php");
     }
     //-------------------------------------------/
-    
+
     $message_good = '';
     $message_error = '';
     if (!empty($_POST['email']) && !empty($_POST['password'])):
         //enter the new user in the db
+            //---todo: confirm that the account is not in the db before registering
         $sql = "INSERT INTO users (email, password) VALUES (:email, :password)";
         $stmt = $conn->prepare($sql);
 
@@ -46,6 +47,7 @@
         <form action="register.php" method="POST">
             <input type="text" placeholder = "Enter your email" name = "email">
             <input type="password" placeholder = "and password" name = "password">
+            <!---todo: confirm that the two passwords match ---->
             <input type="password" placeholder = "confirm password" name = "confirm_password">
             <input type="submit" >
         </form>
